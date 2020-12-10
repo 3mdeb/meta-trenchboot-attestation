@@ -20,7 +20,7 @@ index 805e702..0bc386d 100644
  #
  
 -CC=cc
-+#CC=cc
++CC?=cc
  #CC=/usr/local/bin/gcc-9
  
  LIBS=-lm
