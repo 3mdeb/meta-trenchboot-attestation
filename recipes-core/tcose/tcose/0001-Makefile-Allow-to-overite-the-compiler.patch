@@ -1,0 +1,103 @@
+From 0aac76c42d5ab6966962de168c4b85ff6ca156b9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Norbert=20Kami=C5=84ski?= <norbert.kaminski@3mdeb.com>
+Date: Thu, 10 Dec 2020 20:27:02 +0100
+Subject: [PATCH] Makefile: Allow to overite the compiler
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Norbert Kamiński <norbert.kaminski@3mdeb.com>
+---
+ Makefile.ossl | 7 ++++---
+ Makefile.psa  | 7 ++++---
+ Makefile.test | 5 +++--
+ 3 files changed, 11 insertions(+), 8 deletions(-)
+
+diff --git a/Makefile.ossl b/Makefile.ossl
+index 50d350b..2596ce8 100644
+--- a/Makefile.ossl
++++ b/Makefile.ossl
+@@ -49,6 +49,7 @@ CRYPTO_TEST_OBJ=test/t_cose_make_openssl_test_key.o
+ 
+ # ---- compiler configuration -----
+ # Optimize for size
++CC?=cc
+ C_OPTS=-Os -fPIC
+ 
+ 
+@@ -75,14 +76,14 @@ libt_cose.a: $(SRC_OBJ) $(CRYPTO_OBJ)
+ # variability For example MacOS and Linux behave differently and some
+ # IoT OS's don't support them at all.
+ libt_cose.so: $(SRC_OBJ) $(CRYPTO_OBJ)
+-	cc -shared $^ -o $@ $(CRYPTO_LIB) $(QCBOR_LIB)
++	$(CC) -shared $^ -o $@ $(CRYPTO_LIB) $(QCBOR_LIB) -lm
+ 
+ t_cose_test: main.o $(TEST_OBJ) libt_cose.a
+-	cc -o $@ $^ $(QCBOR_LIB) $(CRYPTO_LIB)
++	$(CC) -o $@ $^ $(QCBOR_LIB) $(CRYPTO_LIB) -lm
+ 
+ 
+ t_cose_basic_example_ossl: examples/t_cose_basic_example_ossl.o libt_cose.a
+-	cc -o $@ $^ $(QCBOR_LIB) $(CRYPTO_LIB)
++	$(CC) -o $@ $^ $(QCBOR_LIB) $(CRYPTO_LIB) -lm
+ 
+ 
+ # ---- Installation ----
+diff --git a/Makefile.psa b/Makefile.psa
+index cf822fd..709851c 100644
+--- a/Makefile.psa
++++ b/Makefile.psa
+@@ -51,6 +51,7 @@ CRYPTO_TEST_OBJ=test/t_cose_make_psa_test_key.o
+ 
+ # ---- compiler configuration -----
+ # Optimize for size
++CC?=cc
+ C_OPTS=-Os -fPIC
+ 
+ 
+@@ -77,14 +78,14 @@ libt_cose.a: $(SRC_OBJ) $(CRYPTO_OBJ)
+ # variability For example MacOS and Linux behave differently and some
+ # IoT OS's don't support them at all.
+ libt_cose.so: $(SRC_OBJ) $(CRYPTO_OBJ)
+-	cc -shared $^ -o $@ $(CRYPTO_LIB) $(QCBOR_LIB)
++	$(CC) -shared $^ -o $@ $(CRYPTO_LIB) $(QCBOR_LIB) -lm
+ 
+ t_cose_test: main.o $(TEST_OBJ) libt_cose.a
+-	cc -o $@ $^ $(QCBOR_LIB) $(CRYPTO_LIB)
++	$(CC) -o $@ $^ $(QCBOR_LIB) $(CRYPTO_LIB) -lm
+ 
+ 
+ t_cose_basic_example_psa: examples/t_cose_basic_example_psa.o libt_cose.a
+-	cc -o $@ $^ $(QCBOR_LIB) $(CRYPTO_LIB)
++	$(CC) -o $@ $^ $(QCBOR_LIB) $(CRYPTO_LIB) -lm
+ 
+ 
+ # ---- Installation ----
+diff --git a/Makefile.test b/Makefile.test
+index 85455a7..0a63918 100644
+--- a/Makefile.test
++++ b/Makefile.test
+@@ -33,6 +33,7 @@ CRYPTO_TEST_OBJ=
+ 
+ # ---- compiler configuration -----
+ # Optimize for size
++CC?=cc
+ C_OPTS=-Os -fPIC
+ 
+ 
+@@ -57,10 +58,10 @@ libt_cose.a: $(SRC_OBJ) $(CRYPTO_OBJ)
+ 	ar -r $@ $^
+ 
+ libt_cose.so: $(SRC_OBJ) $(CRYPTO_OBJ)
+-	cc $^ $(CFLAGS) -dead_strip -o $@ -shared $(QCBOR_LIB) $(CRYPTO_LIB)
++	$(CC) $^ $(CFLAGS) -dead_strip -o $@ -shared $(QCBOR_LIB) $(CRYPTO_LIB) -lm
+ 
+ t_cose_test: main.o $(TEST_OBJ) libt_cose.a 
+-	cc -o $@ $^ $(QCBOR_LIB) $(CRYPTO_LIB)
++	$(CC) -o $@ $^ $(QCBOR_LIB) $(CRYPTO_LIB) -lm
+ 
+ 
+ clean:
+-- 
+2.25.1
+
