@@ -19,3 +19,7 @@ do_install () {
 }
 
 FILES_${PN} = "${exec_prefix}"
+
+RDEPENDS_${PN} = "glibc-dev"
+
+INSANE_SKIP = "dev-deps"
