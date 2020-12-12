@@ -5,6 +5,7 @@ LICENSE = "CLOSED"
 
 SRC_URI = "git://github.com/laurencelundblade/QCBOR.git;protocol=https;branch=master"
 SRC_URI += "file://0001-Makefile-Use-CC-as-a-compiler.patch"
+SRC_URI += "file://0001-Makefile-link-math-library.patch"
 
 SRCREV = "c02e13eb6263381195290424c4cdffd440a0aa96"
 

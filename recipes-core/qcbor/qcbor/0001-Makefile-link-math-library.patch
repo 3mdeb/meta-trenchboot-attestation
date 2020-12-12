@@ -1,0 +1,29 @@
+From 2ea1c275b4961c9976df5e102470d2b8edde6f7c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Norbert=20Kami=C5=84ski?= <norbert.kaminski@3mdeb.com>
+Date: Sat, 12 Dec 2020 15:25:21 +0100
+Subject: [PATCH] Makefile: Link math library
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Norbert Kamiński <norbert.kaminski@3mdeb.com>
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 0bc386d..344360e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -41,7 +41,7 @@ libqcbor.a: $(QCBOR_OBJ)
+ # variability For example MacOS and Linux behave differently and some
+ # IoT OS's don't support them at all.
+ libqcbor.so: $(QCBOR_OBJ)
+-	$(CC) -shared $^ $(CFLAGS) -o $@
++	$(CC) -shared $^ $(CFLAGS) -o $@ $(LIBS)
+ 
+ PUBLIC_INTERFACE=inc/qcbor/UsefulBuf.h inc/qcbor/qcbor_private.h inc/qcbor/qcbor_common.h inc/qcbor/qcbor_encode.h inc/qcbor/qcbor_decode.h inc/qcbor/qcbor_spiffy_decode.h
+ 
+-- 
+2.25.1
+
