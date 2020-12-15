@@ -4,9 +4,9 @@ HOMEPAGE = "https://github.com/Fraunhofer-SIT/charra"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/git/LICENSE.md;md5=5aeab7914c62fb03925841d8fd65bced"
 
-SRC_URI = "git://github.com/3mdeb/charra.git;protocol=https;branch=master;"
+SRC_URI = "git://github.com/3mdeb/charra.git;protocol=https;branch=fix_quote;"
 
-SRCREV = "a7eda6513dd2031d1879ed3dd613e617860d2e1f"
+SRCREV = "c307ce609eb3bd652483b58b4a9c322c28bcbda5"
 
 S = "${WORKDIR}/git"
 TARGET_CC_ARCH += "${LDFLAGS}"
