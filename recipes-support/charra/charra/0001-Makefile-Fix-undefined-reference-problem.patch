@@ -1,0 +1,34 @@
+From 825ebf0f686f3b45ae753591e6f154ac4b57097a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Norbert=20Kami=C5=84ski?= <norbert.kaminski@3mdeb.com>
+Date: Fri, 11 Dec 2020 18:19:36 +0100
+Subject: [PATCH] Makefile: Fix undefined reference problem
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Norbert Kamiński <norbert.kaminski@3mdeb.com>
+---
+ Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 5a8937c..a70e44f 100644
+--- a/Makefile
++++ b/Makefile
+@@ -54,11 +54,11 @@ all.static: $(TARGETS)
+ 
+ 
+ $(BINDIR)/attester: $(SRCDIR)/attester.c $(OBJECTS)
+-	$(CC) $^ $(CFLAGS) $(INCLUDE) $(LIBINCLUDE) $(LDPATH) $(LDFLAGS) -g -o $@ -Wl,--gc-sections
++	$(CC) $^ $(CFLAGS) $(INCLUDE) $(LIBINCLUDE) $(LDPATH) $(LDFLAGS) -g -o $@ -Wl,--gc-sections -lm
+ 	###strip --strip-unneeded $@
+ 
+ $(BINDIR)/verifier: $(SRCDIR)/verifier.c $(OBJECTS)
+-	$(CC) $^ $(CFLAGS) $(INCLUDE) $(LIBINCLUDE) $(LDPATH) $(LDFLAGS) -g -o $@ -Wl,--gc-sections
++	$(CC) $^ $(CFLAGS) $(INCLUDE) $(LIBINCLUDE) $(LDPATH) $(LDFLAGS) -g -o $@ -Wl,--gc-sections -lm
+ 	###strip --strip-unneeded $@
+ 
+ 
+-- 
+2.25.1
+

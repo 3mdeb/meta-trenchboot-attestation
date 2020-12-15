@@ -1,0 +1,29 @@
+From c31ee19c660c7086af1e4aa660f72eee3879011b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Norbert=20Kami=C5=84ski?= <norbert.kaminski@3mdeb.com>
+Date: Wed, 9 Dec 2020 20:52:10 +0100
+Subject: [PATCH] Makefile: Use $(CC) as a compiler
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Norbert Kamiński <norbert.kaminski@3mdeb.com>
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 805e702..0bc386d 100644
+--- a/Makefile
++++ b/Makefile
+@@ -7,7 +7,7 @@
+ # See BSD-3-Clause license in README.md
+ #
+ 
+-CC=cc
++CC?=cc
+ #CC=/usr/local/bin/gcc-9
+ 
+ LIBS=-lm
+-- 
+2.25.1
+
