@@ -24,4 +24,8 @@ do_install () {
     oe_runmake -f Makefile.psa install install_so DESTDIR=${D} PREFIX=${exec_prefix}
 }
 
+INSANE_SKIP = "dev-so staticdev"
+
 RDEPENDS_${PN} += "qcbor"
+
+FILES_${PN} += "${exec_prefix}/lib"

@@ -1,0 +1,55 @@
+From 3bebebe7d82e6650f73fa59475624d745fd7368e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Norbert=20Kami=C5=84ski?= <norbert.kaminski@3mdeb.com>
+Date: Tue, 15 Dec 2020 14:08:02 +0100
+Subject: [PATCH] Makefile: Allow specifying lib directory
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Norbert Kamiński <norbert.kaminski@3mdeb.com>
+---
+ Makefile | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 344360e..0aa1cab 100644
+--- a/Makefile
++++ b/Makefile
+@@ -67,9 +67,13 @@ ifeq ($(PREFIX),)
+     PREFIX := /usr/local
+ endif
+ 
++ifeq ($(LIB_PREFIX),)
++    LIB_PREFIX := $(PREFIX)/lib
++endif
++
+ install: libqcbor.a $(PUBLIC_INTERFACE)
+-	install -d $(DESTDIR)$(PREFIX)/lib/
+-	install -m 644 libqcbor.a $(DESTDIR)$(PREFIX)/lib/
++	install -d $(DESTDIR)$(LIB_PREFIX)
++	install -m 644 libqcbor.a $(DESTDIR)$(LIB_PREFIX)
+ 	install -d $(DESTDIR)$(PREFIX)/include/qcbor
+ 	install -m 644 inc/qcbor/qcbor.h $(DESTDIR)$(PREFIX)/include/qcbor
+ 	install -m 644 inc/qcbor/qcbor_private.h $(DESTDIR)$(PREFIX)/include/qcbor
+@@ -80,14 +84,14 @@ install: libqcbor.a $(PUBLIC_INTERFACE)
+ 	install -m 644 inc/qcbor/UsefulBuf.h $(DESTDIR)$(PREFIX)/include/qcbor
+ 
+ install_so: libqcbor.so
+-	install -m 755 libqcbor.so $(DESTDIR)$(PREFIX)/lib/libqcbor.so.1.0.0
+-	ln -sf libqcbor.so.1 $(DESTDIR)$(PREFIX)/lib/libqcbor.so
+-	ln -sf libqcbor.so.1.0.0 $(DESTDIR)$(PREFIX)/lib/libqcbor.so.1
++	install -m 755 libqcbor.so $(DESTDIR)$(LIB_PREFIX)/libqcbor.so.1.0.0
++	ln -sf libqcbor.so.1 $(DESTDIR)$(LIB_PREFIX)/libqcbor.so
++	ln -sf libqcbor.so.1.0.0 $(DESTDIR)$(LIB_PREFIX)/libqcbor.so.1
+ 
+ uninstall: libqcbor.a $(PUBLIC_INTERFACE)
+ 	$(RM) -d $(DESTDIR)$(PREFIX)/include/qcbor/*
+ 	$(RM) -d $(DESTDIR)$(PREFIX)/include/qcbor/
+-	$(RM) $(addprefix $(DESTDIR)$(PREFIX)/lib/, \
++	$(RM) $(addprefix $(DESTDIR)$(LIB_PREFIX), \
+ 		libqcbor.a libqcbor.so libqcbor.so.1 libqcbor.so.1.0.0)
+ 
+ clean:
+-- 
+2.25.1
+
