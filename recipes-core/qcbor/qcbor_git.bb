@@ -8,7 +8,7 @@ SRC_URI += "file://0001-Makefile-Use-CC-as-a-compiler.patch"
 SRC_URI += "file://0001-Makefile-link-math-library.patch"
 SRC_URI += "file://0001-Makefile-Allow-specifying-lib-directory.patch"
 
-SRCREV = "c02e13eb6263381195290424c4cdffd440a0aa96"
+SRCREV = "7278700c32ec763b56efa1f5995c120c8af0140e"
 
 S = "${WORKDIR}/git"
 TARGET_CC_ARCH += "${LDFLAGS}"
