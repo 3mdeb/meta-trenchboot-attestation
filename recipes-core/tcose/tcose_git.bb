@@ -9,7 +9,7 @@ SRC_URI = "\
     file://0001-Makefile-Allow-to-overwrite-include-path.patch \
 "
 
-SRCREV = "87583c35c38593568e6f2bafe8b6634f80bdbeed"
+SRCREV = "b56e2b952492fc1d1056d3a8f1db1ad161acb0aa"
 
 S = "${WORKDIR}/git"
 TARGET_CC_ARCH += "${LDFLAGS}"
