@@ -7,8 +7,8 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/git/LICENSE;md5=62a1cb19feee5d5dc7cad8cdbe
 SRC_URI = "git://github.com/obgm/libcoap.git;protocol=https;branch=develop;name=libcoap"
 SRC_URI += "gitsm://github.com/eclipse/tinydtls.git;protocol=https;branch=develop;destsuffix=git/ext/tinydtls;name=tinydtls"
 
-SRCREV_libcoap = "f29f053d53c3dd16394b3a3d8ec604f3ffb277bf"
-SRCREV_tinydtls = "290c48d262b6859443bd4b04926146bda3293c98"
+SRCREV_libcoap = "eb7656850f1cf4282e3ff7ab880f50d5cdfab685"
+SRCREV_tinydtls = "706888256c3e03d9fcf1ec37bb1dd6499213be3c"
 
 inherit autotools pkgconfig bash-completion autotools-brokensep
 
@@ -26,7 +26,7 @@ EXTRA_OECONF += "\
 S = "${WORKDIR}/git"
 TARGET_CC_ARCH += "${LDFLAGS}"
 
-do_configure_prepend() {
+do_configure:prepend() {
     ./autogen.sh
 }
 
